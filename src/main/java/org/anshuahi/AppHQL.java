@@ -20,7 +20,7 @@ public class AppHQL {
 		try {
 			// getting all users
 			session.beginTransaction();
-			List<Users> users = session.createQuery("from users").getResultList();
+			List<Users> users = session.createQuery("from users where username = 'John'").getResultList();
 			
 			for(Users user: users) {
 				System.out.println(user.toString());
