@@ -36,6 +36,16 @@ public class Users {
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
+	
+	@Override
+	public String toString() {
+		return "Users [userId=" + userId + ", username=" + username + ", email=" + email + ", firstname=" + firstname
+				+ ", lastname=" + lastname + "]";
+	}
+	
+	public Users() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getEmail() {
 		return email;
 	}

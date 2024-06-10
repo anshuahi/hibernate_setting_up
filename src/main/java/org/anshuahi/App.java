@@ -15,8 +15,8 @@ public class App {
 		
 		Session session = factory.getCurrentSession();
 		
-		Users user = new Users("username", "email", "firstname", "lastname");
 		try {
+			Users user = new Users();
 			
 			//create object of entity class type
 			
@@ -24,16 +24,19 @@ public class App {
 			session.beginTransaction();
 			
 			// perform operation
-			session.save(user);
-			
+			user = session.get(Users.class, 4);
+//			user.setFirstname("john");
+//			user.setLastname("snow");
+//			session.save(user);
+			session.delete(user);
 			// commit the transaction
 			session.getTransaction().commit();
-			System.out.println("added a row");
+			System.out.println("get a row " + user.toString());
 			
+//			System.out.println("user: " + user.getUsername());
 		}
 		catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("user: " + user.getUsername());
 			e.printStackTrace();
 		}
 		finally {
