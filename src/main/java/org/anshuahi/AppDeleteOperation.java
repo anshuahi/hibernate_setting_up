@@ -1,13 +1,11 @@
 package org.anshuahi;
 
-import java.util.List;
-
 import org.anshuahi.entity.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class AppHQL {
+public class AppDeleteOperation {
 
 	public static void main(String[] args) {
 		SessionFactory factory = new Configuration()
@@ -20,16 +18,16 @@ public class AppHQL {
 		try {
 			// getting all users
 			session.beginTransaction();
+			Users user = new Users();
+			user = session.get(Users.class, 3);
+			
+			session.delete(user);
 //			List<Users> users = session.createQuery("from users ").getResultList();
 
-			int up = session.createQuery("update users set email='anshu1@anshu.com' " + 
-						" where username = 'John'").executeUpdate();
-			System.out.println("query update " + up);
-			
 //			for(Users user: users) {
 //				System.out.println(user.toString());
 //			}
-//			session.
+			session.getTransaction().commit();
 			
 		}
 		catch (Exception e) {
@@ -41,9 +39,6 @@ public class AppHQL {
 			session.close();
 			factory.close();
 		}
-
-		//factory.close();
-		//session.close();
 
 	}
 
